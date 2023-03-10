@@ -7,6 +7,20 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/*
+*  Test 1: Check an Empty Doubly Linked List
+*  Test 2: Check a Doubly Linked List with one node
+*  Test 3: Check a Doubly Linked List with two nodes
+*  Test 4: Check a Doubly Linked List with three nodes
+*  Test 5: Check Prepend is working
+*  Test 6: Check Append is working
+*  Test 7: Check DeleteFirst is working
+*  Test 8: Check DeleteLast is working
+*
+*  All Tests: Check First is working
+*             Check Last is working
+*             Check Size is working
+*/
 
 class DoublyLinkedListDequeTest {
     DoublyLinkedListDeque<DequeNode<Integer>> doublyLinkedListDeque;
@@ -18,7 +32,7 @@ class DoublyLinkedListDequeTest {
     @DisplayName("Valid Doubly Linked List Deque")
     class test {
         @Test
-        @DisplayName("which is empty")
+        @DisplayName("which is empty") // Test 1
         void emptyDoublyLinkedListDeque() {
             int expectedSize = 0;
 
@@ -29,7 +43,7 @@ class DoublyLinkedListDequeTest {
             assertEquals(doublyLinkedListDeque.size(), expectedSize);
         }
         @Test
-        @DisplayName("which has one node")
+        @DisplayName("which has one node") // Test 2
         void oneNodeDoublyLinkedListDeque() {
             DequeNode<Integer> node = new DequeNode<>(18, null, null);
             doublyLinkedListDeque.prepend(node);
@@ -41,7 +55,7 @@ class DoublyLinkedListDequeTest {
             }
 
         @Test
-        @DisplayName("which has two nodes")
+        @DisplayName("which has two nodes") // Test 3
         void twoNodesDoublyLinkedListDeque(){
             DequeNode<Integer> node1 = new DequeNode<>(18, null, null);
             DequeNode<Integer> node2 = new DequeNode<>(20, null, null);
@@ -56,7 +70,7 @@ class DoublyLinkedListDequeTest {
         }
 
         @Test
-        @DisplayName("which has three nodes")
+        @DisplayName("which has three nodes") // Test 4
         void threeNodesDoublyLinkedListDeque(){
 
             DequeNode<Integer> node1 = new DequeNode<>(18, null, null);
@@ -75,7 +89,7 @@ class DoublyLinkedListDequeTest {
         }
 
         @Test
-        @DisplayName("Prepend is Working")
+        @DisplayName("Prepend is Working") // Test 5
         void CheckPrependWithValues(){
             DequeNode<Integer> node1= new DequeNode<>(18, null, null);
             doublyLinkedListDeque.prepend(node1);
@@ -92,7 +106,7 @@ class DoublyLinkedListDequeTest {
         }
 
         @Test
-        @DisplayName("Apend is Working")
+        @DisplayName("Apend is Working") // Test 6
         void CheckApendWithValues(){
             DequeNode<Integer> node1= new DequeNode<>(18, null, null);
             doublyLinkedListDeque.append(node1);
@@ -109,7 +123,7 @@ class DoublyLinkedListDequeTest {
         }
 
         @Test
-        @DisplayName("DeleteFirst is Working")
+        @DisplayName("DeleteFirst is Working") // Test 7
         void CheckDeleteFirstWithValues(){
             DequeNode<Integer> node1= new DequeNode<>(18, null, null);
             DequeNode<Integer> node2 = new DequeNode<>(20, null, null);
@@ -138,7 +152,7 @@ class DoublyLinkedListDequeTest {
         }
 
         @Test
-        @DisplayName("DeleteLast is Working")
+        @DisplayName("DeleteLast is Working") // Test 8
         void CheckDeleteLastWithValues(){
             DequeNode<Integer> node1= new DequeNode<>(18, null, null);
             DequeNode<Integer> node2 = new DequeNode<>(20, null, null);
