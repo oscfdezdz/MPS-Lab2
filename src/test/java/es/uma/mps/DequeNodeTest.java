@@ -144,8 +144,10 @@ class DequeNodeTest {
         @DisplayName("where first node is first, second is not terminal and last node is last")
         void notEqualFirstAndLast() {
             assertTrue(node1.isFirstNode());
+            assertFalse(node1.isNotATerminalNode());
             assertTrue(node2.isNotATerminalNode());
             assertTrue(node3.isLastNode());
+            assertFalse(node3.isNotATerminalNode());
         }
     }
 }
