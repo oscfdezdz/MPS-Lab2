@@ -2,6 +2,7 @@ package es.uma.mps;
 
 /*
  * @author David Castaños Benedicto
+ * @author Óscar Fernández Díaz
  */
 
 

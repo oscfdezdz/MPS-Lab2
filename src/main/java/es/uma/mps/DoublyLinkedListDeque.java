@@ -1,7 +1,8 @@
 package es.uma.mps;
 
-/**
+/*
  * @author David Castaños Benedicto
+ * @author Óscar Fernández Díaz
  */
 
 public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
