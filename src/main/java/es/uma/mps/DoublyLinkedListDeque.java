@@ -1,5 +1,9 @@
 package es.uma.mps;
 
+/**
+ * @author David Castaños Benedicto
+ */
+
 public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
     private DequeNode<T> first;
