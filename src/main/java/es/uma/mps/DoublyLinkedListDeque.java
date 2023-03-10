@@ -96,19 +96,4 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
     public int size() {
         return size;
     }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder("[");
-        DequeNode<T> current = first;
-        while (current != null) {
-            sb.append(current.getItem().toString());
-            if (current.getNext() != null) {
-                sb.append(", ");
-            }
-            current = current.getNext();
-        }
-        sb.append("]");
-        return sb.toString();
-    }
 }
