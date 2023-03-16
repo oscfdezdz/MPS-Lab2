@@ -7,6 +7,8 @@ import java.util.Comparator;
  * @author Óscar Fernández Díaz
  */
 
+import java.util.Comparator;
+
 public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
     private DequeNode<T> first;
@@ -107,60 +109,76 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
     @Override
     public T get(int index) {
-        DequeNode<T> aux = first;
-        if (size == 0 || index < 0 || index >= size){
-            throw new DoubleEndedQueueException("Empty deque");
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index out of bounds");
         }
 
+        DequeNode<T> node = first;
+
         for (int i = 0; i < index; i++) {
-             aux = aux.getNext();
+            node = node.getNext();
         }
-        return aux.getItem();
+
+        return node.getItem();
     }
 
     @Override
     public boolean contains(T value) {
-        DequeNode<T> aux = first;
-        if (size == 0) {
-            throw new DoubleEndedQueueException("Empty deque");
-        }
-        for (int i = 0; i < size; i++) {
-            if(value == aux.getItem()){
-                return true;
-            }else{
-                aux = aux.getNext();
+        DequeNode<T> node = first;
+        boolean found = false;
+
+        while (node != null && !found) {
+            if (node.getItem().equals(value)) {
+                found = true;
             }
+            node = node.getNext();
         }
-        return false;
+
+        return found;
     }
 
     @Override
     public void remove(T value) {
-        DequeNode<T> aux = first;
-        if (size == 0) {
-            throw new DoubleEndedQueueException("Empty deque");
-        }
-        if(value == aux.getItem()){
-            aux = first.getNext();
-            aux.setPrevious(null);
-        } else if (value == last.getItem()){
-            aux = last.getPrevious();
-            aux.setNext(null);
-        } else {
-            for (int i = 0; i < size; i++) {
-                if (value == aux.getItem()) {
-                    aux.getPrevious().setNext(aux.getNext());
-                    aux.getNext().setPrevious(aux.getPrevious());
+        DequeNode<T> node = first;
+
+        while (node != null) {
+            if (node.getItem().equals(value)) {
+                if (node.isFirstNode()) {
+                    deleteFirst();
+                } else if (node.isLastNode()) {
+                    deleteLast();
                 } else {
-                    aux = aux.getNext();
+                    node.getPrevious().setNext(node.getNext());
+                    node.getNext().setPrevious(node.getPrevious());
+                    size--;
                 }
             }
+            node = node.getNext();
         }
     }
 
-
     @Override
     public void sort(Comparator<? super T> comparator) {
+        if (size > 1) {
+            DequeNode<T> current = first.getNext();
 
+            while (current != null) {
+                T item = current.getItem();
+                DequeNode<T> node = current.getPrevious();
+
+                while (node != null && comparator.compare(node.getItem(), item) > 0) {
+                    node.getNext().setItem(node.getItem());
+                    node = node.getPrevious();
+                }
+
+                if (node == null) {
+                    first.setItem(item);
+                } else {
+                    node.getNext().setItem(item);
+                }
+
+                current = current.getNext();
+            }
+        }
     }
 }
