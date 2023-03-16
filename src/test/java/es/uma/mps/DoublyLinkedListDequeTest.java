@@ -24,6 +24,10 @@ import static org.junit.jupiter.api.Assertions.*;
 *  Test 6: Check Append is working
 *  Test 7: Check DeleteFirst is working
 *  Test 8: Check DeleteLast is working
+*  Test 9: Check Get is working
+*  Test 10: Check Contains is working
+*  Test 11: Check Remove is working
+*  Test 12: Check Sort is working
 *
 *  All Tests: Check First is working
 *             Check Last is working
@@ -37,10 +41,11 @@ class DoublyLinkedListDequeTest {
         doublyLinkedListDeque = new DoublyLinkedListDeque<>();
     }
     @Nested
-    @DisplayName("Valid Doubly Linked List Deque")
-    class test {
+    @DisplayName("Valid Basics Operations in Doubly Linked List Deque")
+    class BasicsOperations {
         @Test
-        @DisplayName("which is empty") // Test 1
+        @DisplayName("which is empty")
+            // Test 1
         void emptyDoublyLinkedListDeque() {
             int expectedSize = 0;
 
@@ -50,8 +55,10 @@ class DoublyLinkedListDequeTest {
             assertThrows(DoubleEndedQueueException.class, doublyLinkedListDeque::last);
             assertEquals(doublyLinkedListDeque.size(), expectedSize);
         }
+
         @Test
-        @DisplayName("which has one node") // Test 2
+        @DisplayName("which has one node")
+            // Test 2
         void oneNodeDoublyLinkedListDeque() {
             DequeNode<Integer> node = new DequeNode<>(18, null, null);
             doublyLinkedListDeque.prepend(node);
@@ -60,14 +67,15 @@ class DoublyLinkedListDequeTest {
             assertEquals(doublyLinkedListDeque.first(), node);
             assertEquals(doublyLinkedListDeque.last(), node);
             assertEquals(doublyLinkedListDeque.size(), expectedSize);
-            }
+        }
 
         @Test
-        @DisplayName("which has two nodes") // Test 3
-        void twoNodesDoublyLinkedListDeque(){
+        @DisplayName("which has two nodes")
+            // Test 3
+        void twoNodesDoublyLinkedListDeque() {
             DequeNode<Integer> node1 = new DequeNode<>(18, null, null);
             DequeNode<Integer> node2 = new DequeNode<>(20, null, null);
-            
+
             doublyLinkedListDeque.prepend(node1);
             doublyLinkedListDeque.append(node2);
             int expectedSize = 2;
@@ -78,17 +86,18 @@ class DoublyLinkedListDequeTest {
         }
 
         @Test
-        @DisplayName("which has three nodes") // Test 4
-        void threeNodesDoublyLinkedListDeque(){
+        @DisplayName("which has three nodes")
+            // Test 4
+        void threeNodesDoublyLinkedListDeque() {
 
             DequeNode<Integer> node1 = new DequeNode<>(18, null, null);
             DequeNode<Integer> node2 = new DequeNode<>(20, null, null);
             DequeNode<Integer> node3 = new DequeNode<>(22, null, null);
-            
+
             doublyLinkedListDeque.prepend(node1);
             doublyLinkedListDeque.append(node2);
             doublyLinkedListDeque.append(node3);
-            
+
             int expectedSize = 3;
 
             assertEquals(doublyLinkedListDeque.first(), node1);
@@ -97,9 +106,10 @@ class DoublyLinkedListDequeTest {
         }
 
         @Test
-        @DisplayName("Prepend is Working") // Test 5
-        void CheckPrependWithValues(){
-            DequeNode<Integer> node1= new DequeNode<>(18, null, null);
+        @DisplayName("Prepend is Working")
+            // Test 5
+        void CheckPrependWithValues() {
+            DequeNode<Integer> node1 = new DequeNode<>(18, null, null);
             doublyLinkedListDeque.prepend(node1);
             assertEquals(doublyLinkedListDeque.first(), node1);
 
@@ -114,9 +124,10 @@ class DoublyLinkedListDequeTest {
         }
 
         @Test
-        @DisplayName("Apend is Working") // Test 6
-        void CheckApendWithValues(){
-            DequeNode<Integer> node1= new DequeNode<>(18, null, null);
+        @DisplayName("Apend is Working")
+            // Test 6
+        void CheckApendWithValues() {
+            DequeNode<Integer> node1 = new DequeNode<>(18, null, null);
             doublyLinkedListDeque.append(node1);
             assertEquals(doublyLinkedListDeque.last(), node1);
 
@@ -131,9 +142,10 @@ class DoublyLinkedListDequeTest {
         }
 
         @Test
-        @DisplayName("DeleteFirst is Working") // Test 7
-        void CheckDeleteFirstWithValues(){
-            DequeNode<Integer> node1= new DequeNode<>(18, null, null);
+        @DisplayName("DeleteFirst is Working")
+            // Test 7
+        void CheckDeleteFirstWithValues() {
+            DequeNode<Integer> node1 = new DequeNode<>(18, null, null);
             DequeNode<Integer> node2 = new DequeNode<>(20, null, null);
             DequeNode<Integer> node3 = new DequeNode<>(22, null, null);
 
@@ -160,9 +172,10 @@ class DoublyLinkedListDequeTest {
         }
 
         @Test
-        @DisplayName("DeleteLast is Working") // Test 8
-        void CheckDeleteLastWithValues(){
-            DequeNode<Integer> node1= new DequeNode<>(18, null, null);
+        @DisplayName("DeleteLast is Working")
+            // Test 8
+        void CheckDeleteLastWithValues() {
+            DequeNode<Integer> node1 = new DequeNode<>(18, null, null);
             DequeNode<Integer> node2 = new DequeNode<>(20, null, null);
             DequeNode<Integer> node3 = new DequeNode<>(22, null, null);
 
@@ -187,9 +200,13 @@ class DoublyLinkedListDequeTest {
 
             assertEquals(doublyLinkedListDeque.size(), 0);
         }
+    }
 
+    @Nested
+    @DisplayName("Valid Advanced Operation in Doubly Linked List Deque")
+    class AdvancedOperations {
         @Test
-        @DisplayName("Get is Working")
+        @DisplayName("Get is Working") // Test 9
         void GetIsWorking(){
             DequeNode<Integer> node1= new DequeNode<>(18, null, null);
             DequeNode<Integer> node2 = new DequeNode<>(20, null, null);
@@ -209,7 +226,7 @@ class DoublyLinkedListDequeTest {
         }
 
         @Test
-        @DisplayName("Contains is working")
+        @DisplayName("Contains is working") // Test 10
         void ContainsIsWorking(){
             DequeNode<Integer> node1= new DequeNode<>(18, null, null);
             DequeNode<Integer> node2 = new DequeNode<>(20, null, null);
@@ -227,7 +244,7 @@ class DoublyLinkedListDequeTest {
         }
 
         @Test
-        @DisplayName("remove is working")
+        @DisplayName("remove is working") // Test 11
         void RemoveIsWorking(){
             DequeNode<Integer> node1= new DequeNode<>(1, null, null);
             DequeNode<Integer> node2 = new DequeNode<>(2, null, null);
@@ -245,7 +262,7 @@ class DoublyLinkedListDequeTest {
         }
 
         @Test
-        @DisplayName("sort is working")
+        @DisplayName("sort is working") // Test 12
         void SortIsWorking(){
             DequeNode<Integer> node1 = new DequeNode<>(1, null, null);
             DequeNode<Integer> node2 = new DequeNode<>(3, null, null);
