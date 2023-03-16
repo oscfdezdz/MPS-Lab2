@@ -185,5 +185,55 @@ class DoublyLinkedListDequeTest {
             assertEquals(doublyLinkedListDeque.size(), 0);
         }
 
+        @Test
+        @DisplayName("Get is Working")
+        void GetIsWorking(){
+            DequeNode<Integer> node1= new DequeNode<>(18, null, null);
+            DequeNode<Integer> node2 = new DequeNode<>(20, null, null);
+            DequeNode<Integer> node3 = new DequeNode<>(22, null, null);
+
+            doublyLinkedListDeque.prepend(node1);
+            doublyLinkedListDeque.prepend(node2);
+            doublyLinkedListDeque.prepend(node3);
+
+            assertEquals(doublyLinkedListDeque.get(0).getItem(), 22);
+            assertEquals(doublyLinkedListDeque.get(1).getItem(), 20);
+            assertEquals(doublyLinkedListDeque.get(2).getItem(), 18);
+
+        }
+
+        @Test
+        @DisplayName("Contains is working")
+        void ContainsIsWorking(){
+            DequeNode<Integer> node1= new DequeNode<>(18, null, null);
+            DequeNode<Integer> node2 = new DequeNode<>(20, null, null);
+            DequeNode<Integer> node3 = new DequeNode<>(22, null, null);
+            DequeNode<Integer> node4 = new DequeNode<>(22, null, null);
+
+            doublyLinkedListDeque.prepend(node1);
+            doublyLinkedListDeque.prepend(node2);
+            doublyLinkedListDeque.prepend(node3);
+
+            assertTrue(doublyLinkedListDeque.contains(node1));
+            assertTrue(doublyLinkedListDeque.contains(node2));
+            assertTrue(doublyLinkedListDeque.contains(node3));
+            assertFalse(doublyLinkedListDeque.contains(node4));
+        }
+
+        @Test
+        @DisplayName("remove is working")
+        void RemoveIsWorking(){
+            DequeNode<Integer> node1= new DequeNode<>(1, null, null);
+            DequeNode<Integer> node2 = new DequeNode<>(2, null, null);
+            DequeNode<Integer> node3 = new DequeNode<>(3, null, null);
+
+            doublyLinkedListDeque.prepend(node1);
+            doublyLinkedListDeque.prepend(node2);
+            doublyLinkedListDeque.prepend(node3);
+
+            doublyLinkedListDeque.remove(node2);
+            assertFalse(doublyLinkedListDeque.contains(node2));
+        }
+
     }
 }

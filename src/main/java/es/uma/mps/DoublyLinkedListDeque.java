@@ -1,5 +1,7 @@
 package es.uma.mps;
 
+import java.util.Comparator;
+
 /**
  * @author David Castaños Benedicto
  */
@@ -38,6 +40,7 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
             first = node;
         } else {
             last.setNext(node);
+            node.setPrevious(last);
         }
 
         last = node;
@@ -99,5 +102,64 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
     @Override
     public int size() {
         return size;
+    }
+
+    @Override
+    public T get(int index) {
+        DequeNode<T> aux = first;
+        if (size == 0 || index < 0 || index >= size){
+            throw new DoubleEndedQueueException("Empty deque");
+        }
+
+        for (int i = 0; i < index; i++) {
+             aux = aux.getNext();
+        }
+        return aux.getItem();
+    }
+
+    @Override
+    public boolean contains(T value) {
+        DequeNode<T> aux = first;
+        if (size == 0) {
+            throw new DoubleEndedQueueException("Empty deque");
+        }
+        for (int i = 0; i < size; i++) {
+            if(value == aux.getItem()){
+                return true;
+            }else{
+                aux = aux.getNext();
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void remove(T value) {
+        DequeNode<T> aux = first;
+        if (size == 0) {
+            throw new DoubleEndedQueueException("Empty deque");
+        }
+        if(value == aux.getItem()){
+            aux = first.getNext();
+            aux.setPrevious(null);
+        } else if (value == last.getItem()){
+            aux = last.getPrevious();
+            aux.setNext(null);
+        } else {
+            for (int i = 0; i < size; i++) {
+                if (value == aux.getItem()) {
+                    aux.getPrevious().setNext(aux.getNext());
+                    aux.getNext().setPrevious(aux.getPrevious());
+                } else {
+                    aux = aux.getNext();
+                }
+            }
+        }
+    }
+
+
+    @Override
+    public void sort(Comparator<? super T> comparator) {
+
     }
 }
