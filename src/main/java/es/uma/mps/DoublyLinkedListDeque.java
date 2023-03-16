@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 /**
  * @author David Castaños Benedicto
+ * @author Óscar Fernández Díaz
  */
 
 public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
