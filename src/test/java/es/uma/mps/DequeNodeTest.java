@@ -155,5 +155,6 @@ class DequeNodeTest {
             assertTrue(node3.isLastNode());
             assertFalse(node3.isNotATerminalNode());
         }
+
     }
 }

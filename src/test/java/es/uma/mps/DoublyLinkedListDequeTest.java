@@ -11,6 +11,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.util.Comparator;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /*
@@ -201,6 +203,9 @@ class DoublyLinkedListDequeTest {
             assertEquals(doublyLinkedListDeque.get(1).getItem(), 20);
             assertEquals(doublyLinkedListDeque.get(2).getItem(), 18);
 
+            assertThrows(IndexOutOfBoundsException.class, () -> doublyLinkedListDeque.get(3));
+            assertThrows(IndexOutOfBoundsException.class, () -> doublyLinkedListDeque.get(-1));
+
         }
 
         @Test
@@ -227,6 +232,7 @@ class DoublyLinkedListDequeTest {
             DequeNode<Integer> node1= new DequeNode<>(1, null, null);
             DequeNode<Integer> node2 = new DequeNode<>(2, null, null);
             DequeNode<Integer> node3 = new DequeNode<>(3, null, null);
+            DequeNode<Integer> node4 = new DequeNode<>(4, null, null);
 
             doublyLinkedListDeque.prepend(node1);
             doublyLinkedListDeque.prepend(node2);
@@ -234,7 +240,33 @@ class DoublyLinkedListDequeTest {
 
             doublyLinkedListDeque.remove(node2);
             assertFalse(doublyLinkedListDeque.contains(node2));
+
+            assertThrows(DoubleEndedQueueException.class, () -> doublyLinkedListDeque.remove(node4));
         }
 
+        @Test
+        @DisplayName("sort is working")
+        void SortIsWorking(){
+            DequeNode<Integer> node1 = new DequeNode<>(1, null, null);
+            DequeNode<Integer> node2 = new DequeNode<>(3, null, null);
+            DequeNode<Integer> node3 = new DequeNode<>(2, null, null);
+
+            doublyLinkedListDeque.prepend(node1);
+            doublyLinkedListDeque.prepend(node2);
+            doublyLinkedListDeque.prepend(node3);
+
+            doublyLinkedListDeque.sort(Comparator.comparing(DequeNode::getItem));
+
+            assertEquals(doublyLinkedListDeque.get(0).getItem(), 1);
+            assertEquals(doublyLinkedListDeque.get(1).getItem(), 2);
+            assertEquals(doublyLinkedListDeque.get(2).getItem(), 3);
+
+            doublyLinkedListDeque.remove(node1);
+            doublyLinkedListDeque.remove(node2);
+
+            assertThrows(DoubleEndedQueueException.class, () -> doublyLinkedListDeque.sort(Comparator.comparing(DequeNode::getItem)));
+
+
+        }
     }
 }
